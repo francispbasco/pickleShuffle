@@ -2,12 +2,18 @@ const shuffleBtn = document.getElementById("shuffle-btn");
 var totalPCount;
 var playersMasterList = new Array();
 
+
 document.addEventListener('DOMContentLoaded', () => {
+    let shuffleClickedTimes = 0;
     const shuffleBtn = document.getElementById("shuffle-btn");
 
     shuffleBtn.addEventListener("click", () => {
-
+        shuffleClickedTimes++;
         //add Players to the Total Players Pool
+        if (shuffleClickedTimes > 1) {
+            //clear the players master list
+            playersMasterList = new Array();
+        }
         addPlayersToArray();
         //get the number of players that will sit out 
         //and add them to the sit out pool

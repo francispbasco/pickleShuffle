@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         addPlayersToMasterList();
         for (let i = 1; i <= document.getElementById("rounds-num").value; i++) {
-
+            document.getElementById("result-area").appendChild(document.createElement("h3")).textContent = "Round " + i + ":";
 
             //for the first iteration cosider all player
             //for subsequent iteration, consider everyone except the those in the last array indexes as those people
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 //add players to sit-out pool, remove from masterlist
                 var pPools = addPlayersToSitOutPool();
             }
-
 
             assignPlayersToCourts(document.getElementById("court-num").value, playersMasterList);
 

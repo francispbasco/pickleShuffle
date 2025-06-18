@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/shuffle-array@1.0.1/index.min.js"></script>
     <script src="main.js"></script>
+    <script src="validation.js"></script>
   </head>
   <body>
     <form id="shuffle-form" action="main.js">
@@ -15,6 +16,7 @@
         id="court-num"
         placeholder="Total Courts"
         value="1"
+        min="1"
         required
       />
       <br />
@@ -25,6 +27,7 @@
         id="rounds-num"
         placeholder="Total Rounds"
         value="3"
+        min="1"
         required
       />
       <br />
@@ -36,8 +39,8 @@
       <button type="button" id="shuffle-btn">Shuffle</button>
     </form>
 
-    <h2>Shuffled Players</h2>
     <hr />
+
     <div class="result-area" id="result-area"></div>
   </body>
 </html>

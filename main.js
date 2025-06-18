@@ -31,8 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //and add them to the sit out pool
             if (getSitOutPlayerCount() > 0) {
                 //add players to sit-out pool, remove from masterlist
-                var pPools = addPlayersToSitOutPool(getSitOutPlayerCount());
-
+                var pPools = addPlayersToSitOutPool();
             }
 
 
@@ -70,8 +69,10 @@ function getSitOutPlayerCount() {
  */
 function addPlayersToSitOutPool() {
     var sitOutPool = new Array();
+    let randomIndexRange = playersMasterList.length - getSitOutPlayerCount();
     while (sitOutPool.length < getSitOutPlayerCount()) {
-        let randomIndex = playersMasterList[getRandomInt(playersMasterList.length - getSitOutPlayerCount())];
+
+        let randomIndex = playersMasterList[getRandomInt(randomIndexRange)];
 
         //add to sitout pool
         sitOutPool.push(randomIndex);
@@ -82,7 +83,7 @@ function addPlayersToSitOutPool() {
 
 
     const sitoutDisplay = document.createElement("p");
-    sitoutDisplay.textContent = "Sit-Out / Referee Group : " + sitOutPool;
+    sitoutDisplay.textContent = "Sit-Out / Referee Group : " + sitOutPool.join(", ");
     document.getElementById("result-area").appendChild(sitoutDisplay);
 
 

@@ -1,3 +1,4 @@
+
 const shuffleBtn = document.getElementById("shuffle-btn");
 var totalPCount;
 var playersMasterList = new Array();
@@ -9,16 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     shuffleBtn.addEventListener("click", () => {
         shuffleClickedTimes++;
+
         //add Players to the Total Players Pool
         if (shuffleClickedTimes > 1) {
             //clear the players master list
             playersMasterList = new Array();
         }
-        addPlayersToArray();
+
+        addPlayersToMasterList();
+        //actually shuffle the players
+        window.shuffle(playersMasterList);
         //get the number of players that will sit out 
         //and add them to the sit out pool
         if (getSitOutPlayerCount() > 0) {
-            //add players to sit-out pool
+            //add players to sit-out pool, remove from masterlist
             addPlayersToSitOutPool(getSitOutPlayerCount());
             //add players to play-on pool
 
@@ -42,6 +47,10 @@ function getSitOutPlayerCount() {
     return sitOutCountPerTurn;
 }
 
+/**
+ * Adds players to the sit out pool 
+ * And removes those sitting out from the master list
+ */
 function addPlayersToSitOutPool() {
     var sitOutPool = new Array();
     while (sitOutPool.length < getSitOutPlayerCount()) {
@@ -49,12 +58,15 @@ function addPlayersToSitOutPool() {
 
         //add to sitout pool
         sitOutPool.push(randomIndex);
+        //remove from master list
+        playersMasterList = playersMasterList.filter(player => player !== randomIndex);
     }
     console.log("Sit Out Pool: ", sitOutPool);
+    console.log("New master list: ", playersMasterList);
 }
 
 
-function addPlayersToArray() {
+function addPlayersToMasterList() {
 
     var playerList = document.getElementById("player-list").value.split("\n");
     for (let i = 0; i < playerList.length; i++) {
